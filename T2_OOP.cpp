@@ -226,7 +226,7 @@ AvionMarfa AvionMarfa::operator=(const AvionMarfa& obj) {
 
 class AvionMilitar :public AvionCalatori, public AvionMarfa {
 private:
-	std::string oraganizatieMilitara;
+	std::string organizatieMilitara;
 public:
 	AvionMilitar();
 	AvionMilitar(std::string, std::string, std::string, float, int, int, int, int, std::string);
@@ -249,13 +249,13 @@ public:
 			in >> this->cantitateMarfa;
 		}
 		std::cout << "Denumire organizatie militara: ";
-		in >> oraganizatieMilitara;
+		in >> organizatieMilitara;
 		return in;
 	}
 	std::ostream& print(std::ostream& out) const{
 		out << "MIL" << '\t';
 		Avion::print(out);
-		out << this->numarCalatori << '\t' << this->cantitateMarfa << '\t' << this->oraganizatieMilitara << '\n';
+		out << this->numarCalatori << '\t' << this->cantitateMarfa << '\t' << this->organizatieMilitara << '\n';
 		return out;
 	}
 	friend std::istream& operator>>(std::istream& in, AvionMilitar& obj) {
@@ -270,25 +270,25 @@ public:
 };
 
 AvionMilitar::AvionMilitar() {
-	this->oraganizatieMilitara = "NEDEFINIT";
+	this->organizatieMilitara = "NEDEFINIT";
 }
 
 AvionMilitar::AvionMilitar(std::string model, std::string origine, std::string destinatie, float combustibil, int timpDecolare, int timpTraseu, int numarCalatori, int cantitateMarfa, std::string organizatieMilitara):
 							Avion(model, origine, destinatie, combustibil, timpDecolare, timpTraseu),
 							AvionCalatori(model, origine, destinatie, combustibil, timpDecolare, timpTraseu, numarCalatori),
 							AvionMarfa(model, origine, destinatie, combustibil, timpDecolare, timpTraseu, cantitateMarfa) {
-	this->oraganizatieMilitara = oraganizatieMilitara;
+	this->organizatieMilitara = organizatieMilitara;
 }
 
 AvionMilitar::AvionMilitar(const AvionMilitar& obj) :Avion(obj), AvionCalatori(obj), AvionMarfa(obj) {
-	this->oraganizatieMilitara = obj.oraganizatieMilitara;
+	this->organizatieMilitara = obj.organizatieMilitara;
 }
 
 AvionMilitar AvionMilitar::operator=(const AvionMilitar& obj) {
 	if (this != &obj) {
 		AvionCalatori::operator=(obj);
 		AvionMarfa::operator=(obj);
-		this->oraganizatieMilitara = obj.oraganizatieMilitara;
+		this->organizatieMilitara = obj.organizatieMilitara;
 	}
 	return *(this);
 }
@@ -407,6 +407,7 @@ public:
 		Avion* a;
 		tipAvion = rand() % 3;
 		model = this->modeleAvioane[rand() % 5];
+		std::string orgMilitara = this->organizatii[rand() % 7];
 		do {
 			o = rand() % 20;
 		} while (o == 0);
@@ -424,7 +425,6 @@ public:
 		}
 		else{
 			int cantitateMarfa = rand() % 100 + 1, numarCalatori = rand() % 100 + 1;
-			std::string orgMilitara = this->organizatii[rand() % 7];
 			a = new AvionMilitar(model, origine, destinatie, combustibil, timpDecolare, timpTraseu, numarCalatori, cantitateMarfa, orgMilitara);
 		}
 		Zbor zbor(a, tipAvion);
