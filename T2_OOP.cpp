@@ -596,6 +596,7 @@ public:
 					std::cout << "\033[1;32m";
 					std::cout << "Scorul obtinut: " << g.getScor();
 					std::cout << "\033[0m";
+					std::this_thread::sleep_for(std::chrono::seconds(3));
 					running = false;
 				}
 			}
