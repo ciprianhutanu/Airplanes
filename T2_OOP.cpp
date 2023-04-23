@@ -407,7 +407,6 @@ public:
 		Avion* a;
 		tipAvion = rand() % 3;
 		model = this->modeleAvioane[rand() % 5];
-		std::string orgMilitara = this->organizatii[rand() % 7];
 		do {
 			o = rand() % 20;
 		} while (o == 0);
@@ -425,6 +424,7 @@ public:
 		}
 		else{
 			int cantitateMarfa = rand() % 100 + 1, numarCalatori = rand() % 100 + 1;
+			std::string orgMilitara = this->organizatii[rand() % 7];
 			a = new AvionMilitar(model, origine, destinatie, combustibil, timpDecolare, timpTraseu, numarCalatori, cantitateMarfa, orgMilitara);
 		}
 		Zbor zbor(a, tipAvion);
