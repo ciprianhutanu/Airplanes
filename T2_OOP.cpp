@@ -30,8 +30,10 @@ public:
 		this->origine = "BUC";
 		std::cout << "Destinatia: ";
 		in >> this->destinatie;
-		std::cout << "Durata zborului: ";
-		in >> this->timpTraseu;
+		do {
+			std::cout << "Durata zborului: ";
+			in >> this->timpTraseu;
+		} while (this->timpTraseu <= 0);
 		this->timpDecolare = 0;
 		this->combustibil = this->timpTraseu * 41.57;
 		return in;
@@ -124,9 +126,9 @@ public:
 		this->Avion::scan(in);
 		std::cout << "Numar calatori(max.200): ";
 		in >> this->numarCalatori;
-		while (this->numarCalatori > 200)
+		while (this->numarCalatori > 200 or this->numarCalatori < 0)
 		{
-			std::cout << "Prea multi calatori! Mai incearca: ";
+			std::cout << "Numar calatori necorespunzator! Mai incearca: ";
 			in >> this->numarCalatori;
 		}
 		return in;
@@ -180,9 +182,9 @@ public:
 		this->Avion::scan(in);
 		std::cout << "Cantitate marfa(max.200): ";
 		in >> this->cantitateMarfa;
-		while (this->cantitateMarfa > 200)
+		while (this->cantitateMarfa > 200 or this->cantitateMarfa < 0)
 		{
-			std::cout << "Prea multa marfa! Mai incearca: ";
+			std::cout << "Cantitate marfa necorespunzatoare! Mai incearca: ";
 			in >> this->cantitateMarfa;
 		}
 		return in;
@@ -236,16 +238,16 @@ public:
 		Avion::scan(in);
 		std::cout << "Numar militari(max.100): ";
 		in >> this->numarCalatori;
-		while (this->numarCalatori > 100)
+		while (this->numarCalatori > 100 or this->numarCalatori < 0)
 		{
-			std::cout << "Prea multi calatori! Mai incearca: ";
+			std::cout << "Numar calatori necorespunzator! Mai incearca: ";
 			in >> this->numarCalatori;
 		}
 		std::cout << "Cantitate marfa(max.100): ";
 		in >> this->cantitateMarfa;
-		while (this->cantitateMarfa > 100)
+		while (this->cantitateMarfa > 100 or this->cantitateMarfa < 0)
 		{
-			std::cout << "Prea multa marfa! Mai incearca: ";
+			std::cout << "Cantitate marfa necorespunzatoare! Mai incearca: ";
 			in >> this->cantitateMarfa;
 		}
 		std::cout << "Denumire organizatie militara: ";
@@ -379,12 +381,16 @@ public:
 			else
 				out << i << '\t' << obj.listaAvioane[i];
 		}
-		out << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+		out << "\033[1;34m";
+		out << "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+		out << "\033[0m";
 		out << "Plecari:\nIndex\tCat\tID\tMod\tOrig\tDest\tPle\tDurata\tC\tPas\tM(tone)\tOrg\n";
 		for (int i = 0; i < obj.listaAvioaneBonus.size(); i++) {
 			out << i << '\t' << obj.listaAvioaneBonus[i];
 		}
-		out << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+		out << "\033[1;34m";
+		out << "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+		out << "\033[0m";
 		for (int i = 1; i <= obj.numarTerminale; i++) {
 			out << "T" << i << ": ";
 			if (obj.timpTerminale[i - 1] == 0)
@@ -392,12 +398,16 @@ public:
 			else
 				out << "Ocupat pentru inca: " << obj.timpTerminale[i - 1] << "m\n";
 		}
-		out << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+		out << "\033[1;34m";
+		out << "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+		out << "\033[0m";
 		out << "Scor: " << obj.scor << '\n';
 		out << "Balanta: " << obj.bani << '\n';
 		out << "Bonus: " << obj.mult << "x\n";
 		out << "Avioane bonus: " << obj.numarAvioaneBonus << '\n';
-		out << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+		out << "\033[1;34m";
+		out << "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+		out << "\033[0m";
 		return out;
 	}
 	void generareAvion(int timpDecolare) {
@@ -415,15 +425,15 @@ public:
 		timpTraseu = rand() % 180 + 25;
 		combustibil = timpTraseu * 41.57;
 		if (tipAvion == 0) {
-			int numarCalatori = rand() % 200 + 1;
+			int numarCalatori = rand() % 150 + 50;
 			a = new AvionCalatori(model, origine, destinatie, combustibil, timpDecolare, timpTraseu, numarCalatori);
 		}
 		else if (tipAvion == 1) {
-			int cantitateMarfa = rand() % 200 + 1;
+			int cantitateMarfa = rand() % 150 + 50;
 			a = new AvionMarfa(model, origine, destinatie, combustibil, timpDecolare, timpTraseu, cantitateMarfa);
 		}
 		else{
-			int cantitateMarfa = rand() % 100 + 1, numarCalatori = rand() % 100 + 1;
+			int cantitateMarfa = rand() % 150 + 50, numarCalatori = rand() % 150 + 50;
 			std::string orgMilitara = this->organizatii[rand() % 7];
 			a = new AvionMilitar(model, origine, destinatie, combustibil, timpDecolare, timpTraseu, numarCalatori, cantitateMarfa, orgMilitara);
 		}
@@ -441,6 +451,11 @@ public:
 		if (cnt == this->numarTerminale)
 		{
 			std::cout << "Nu sunt terminale libere\n";
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+			return;
+		}
+		if (this->listaAvioane.size() == 0) {
+			std::cout << "Nu este programat niciun zbor!\n";
 			std::this_thread::sleep_for(std::chrono::seconds(1));
 			return;
 		}
@@ -484,7 +499,7 @@ public:
 	}
 	void upgradeBonus() {
 		if (this->bani >= 300) {
-			this->mult += 0.1;
+			this->mult += 0.5;
 			this->bani -= 300;
 			std::cout << "Tranzatie finalizata!";
 			std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -541,11 +556,11 @@ public:
 			std::cin >> z;
 			z.getAvion()->setTimpDecolare(i);
 			this->listaAvioaneBonus.push_back(z);
-			std::cout << "Avion a plecat!";
+			std::cout << "Avionul a plecat!";
 			std::this_thread::sleep_for(std::chrono::seconds(1));
 		}
 		else {
-			std::cout << "Fonduri insuficiente!";
+			std::cout << "Nu sunt disponibile avioane bonus!";
 			std::this_thread::sleep_for(std::chrono::seconds(1));
 		}
 	}
@@ -558,6 +573,9 @@ public:
 	}
 	int getScor() {
 		return this->scor;
+	}
+	float getBani() {
+		return this->bani;
 	}
 };
 
@@ -591,7 +609,7 @@ public:
 					std::cout << "\033[1;31m";
 					std::cout << "Avionul cu indexul "<<n<<" s-a prabusit! Joc incheiat...\n";
 					std::cout << "\033[0m";
-					std::this_thread::sleep_for(std::chrono::seconds(3));
+					std::this_thread::sleep_for(std::chrono::seconds(5));
 					system("CLS");
 					std::cout << "\033[1;32m";
 					std::cout << "Scorul obtinut: " << g.getScor();
@@ -601,33 +619,49 @@ public:
 				}
 			}
 			else {
-				int k;
-				std::cout << "0. Iesire\n1. Aterizati avion\n2. Magazin\n3. Continuare\n";
-				std::cin >> k;
-				if (k <= 0 or k > 3) {
-					running = !running;
-				}
-				if (k == 1) {
-					int t, i;
-					std::cout << "Introduceti terminal: ";
-					std::cin >> t;
-					std::cout << "Introduceti avion: ";
-					std::cin >> i;
-					g.aterizareTerminal(t, i);
-				}
-				while (k == 2) {
+				while (true) {
+					int k;
 					system("CLS");
-					std::cout << "0. Iesire\n1. Adaugare terminal(500$)\n2. Marire bonus(300$)\n3. Avion bonus\n";
-					int j;
-					std::cin >> j;
-					if (j <= 0 or j > 3)
-						k = 0;
-					if (j == 1)
-						g.upgradeNumarTerminale(), k = 0;
-					if (j == 2)
-						g.upgradeBonus(), k = 0;
-					if (j == 3)
-						g.avionBonus(i), k = 0;
+					std::cout << g;
+					std::cout << "0. Iesire\n1. Aterizati avion\n2. Magazin\n3. Continuare\n";
+					std::cin >> k;
+					if (k <= 0 or k > 3) {
+						running = !running;
+						break;
+					}
+					if (k == 1) {
+						int t, i;
+						std::cout << "Introduceti numar terminal: ";
+						std::cin >> t;
+						std::cout << "Introduceti index avion: ";
+						std::cin >> i;
+						g.aterizareTerminal(t, i);
+					}
+					while (true and k==2) {
+						system("CLS");
+						std::cout << "\033[1;32m";
+						std::cout << "Bani: " << g.getBani();
+						std::cout << "\033[0m";
+						std::cout << "\n0. Iesire\n1. Adaugare terminal(500$)\n2. Marire bonus(300$)\n3. Avion bonus\n";
+						int j;
+						std::cin >> j;
+						if (j <= 0 or j > 3)
+							break;
+						if (j == 1) {
+							g.upgradeNumarTerminale();
+							break;
+						}
+						if (j == 2) {
+							g.upgradeBonus();
+							break;
+						}
+						if (j == 3) {
+							g.avionBonus(i);
+							break;
+						}
+					}
+					if (k == 3)
+						break;
 				}
 				running = !running;
 			}
@@ -637,10 +671,10 @@ public:
 			system("CLS");
 			std::cout << "  Esti directorul turnului de control al unui aeroport si trebuie sa atribui fiecare avion in aterizare un terminal, pana ca acesta sa ramana fara combustibil.\n";
 			std::cout << "  Aterizarea unui avion incepe in ultimele 10 minute de zbor. Afisajul fiecarui avion isi va schimba culoarea in rosu in momentul inceperii procedurilor de aterizare.\n";
-			std::cout << "  Ecranul principal se imparte in 4 sectiunii: 'Veniri', 'Plecari', 'Terminale' si 'Statistici'.\n";
+			std::cout << "  Ecranul principal se imparte in 4 sectiuni: 'Veniri', 'Plecari', 'Terminale' si 'Statistici'.\n";
 			std::cout << "\t->In 'Veniri' vor fi afisate toate zborurile ce vor ateriza in aeroportul tau. Sunt generate aleatoriu.\n";
 			std::cout << "\t->In 'Plecari' vor fi afisate toate avioanele 'bonus'. Exista o sansa de 1% odata la 0.2secunde de a primi un avion bonus. Se revendica din meniu, sub tagul 'Magazin'.\n";
-			std::cout << "\t->In 'Terminale' se vor afisa toate terminalele destinute de aeroport. Mare grija, odata ce un avion aterizeaza, terminalul selectat va fi ocupat pentru 25m! Ele se pot achizitiona din meniu-'Magazin' pentru 500$.\n";
+			std::cout << "\t->In 'Terminale' se vor afisa toate terminalele detinute de aeroport. Mare grija, odata ce un avion aterizeaza, terminalul selectat va fi ocupat pentru 25m! Ele se pot achizitiona din meniu-'Magazin' pentru 500$.\n";
 			std::cout << "\t->In 'Statistici' se vor afisa:\n\t\t- Scorul - creste cu 1 la fiecare avion aterizat.\n\t\t- Balanta - banii castigati din avioanele aterizate si cele bonus.\n\t\t- Bonusul - acesta se va inmulti cu valoarea fiecarei curse(poate fi marit pentru 300$ in 'Magazin').\n\t\t- Avioanele bonus - numarul de avioane bonus.\n";
 			std::cout << "  Pentru fiecare avion se vor afisa: Indexul, Categoria(Cat), Numarul zborului(ID), Modelul(Mod), Originea(Orig), Destinatia(Dest), Ora plecarii(Ple), Durata ramasa a zborului(Durata), Combustibilul ramas(C), Numarul de pasageri <daca este cazul>(Pas), Cantitatea de marfa<daca este cazul>(M), Organizatia militara<daca este cazul>(Org)\n";
 			std::cout << "  Valoarea unui avion se calculeaza astfel:\n\t\tV = ( numar_pasageri + cantitate_marfa ) * bonus\n";
