@@ -1,0 +1,11 @@
+﻿  T2_OOP.cpp
+C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\T2_OOP\T2_OOP.cpp(54,1): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\T2_OOP\T2_OOP.cpp(113,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\T2_OOP\T2_OOP.cpp(139,30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\T2_OOP\T2_OOP.cpp(194,31): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\T2_OOP\T2_OOP.cpp(249,15): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\T2_OOP\T2_OOP.cpp(473,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\T2_OOP\T2_OOP.cpp(712,13): warning C4101: 'error': unreferenced local variable
+C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\T2_OOP\T2_OOP.cpp(738,13): warning C4101: 'error': unreferenced local variable
+C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\T2_OOP\T2_OOP.cpp(901,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  T2_OOP.vcxproj -> C:\Users\euseb\OneDrive\Documents\Facultate\Tema2_OOP\T2_OOP\x64\Debug\T2_OOP.exe
