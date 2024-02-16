@@ -1,0 +1,11 @@
+﻿  Airplanes.cpp
+C:\Users\euseb\source\repos\Airplanes\Airplanes\Airplanes.cpp(54,1): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\euseb\source\repos\Airplanes\Airplanes\Airplanes.cpp(113,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\euseb\source\repos\Airplanes\Airplanes\Airplanes.cpp(139,30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\euseb\source\repos\Airplanes\Airplanes\Airplanes.cpp(194,31): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\euseb\source\repos\Airplanes\Airplanes\Airplanes.cpp(249,15): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\euseb\source\repos\Airplanes\Airplanes\Airplanes.cpp(503,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\euseb\source\repos\Airplanes\Airplanes\Airplanes.cpp(742,13): warning C4101: 'error': unreferenced local variable
+C:\Users\euseb\source\repos\Airplanes\Airplanes\Airplanes.cpp(768,13): warning C4101: 'error': unreferenced local variable
+C:\Users\euseb\source\repos\Airplanes\Airplanes\Airplanes.cpp(931,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Airplanes.vcxproj -> C:\Users\euseb\source\repos\Airplanes\x64\Debug\Airplanes.exe
